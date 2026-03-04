@@ -1,0 +1,1 @@
+# Prova-de-algoritimo-SPTECH-sprint1-Resolucao
