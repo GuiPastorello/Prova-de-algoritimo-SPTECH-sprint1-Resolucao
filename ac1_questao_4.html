@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Questão 4</title>
+</head>
+<body>
+   <h2>Questão 4</h2>
+   <span>Quantidade de m³ de gás consumidos:</span>
+   <input type="text" id="input_metros"> <br>
+
+   <span>Tipo de Sistema: "GN" (Gás Natural) ou "GLP" (Gás de Botijão)</span>
+   <input type="text" id="input_sistema"> <br>
+
+   <span>Valor da Taxa de Instalação Fixa em Reais: </span>
+   <input type="text" id="input_taxa"> <br>
+
+   <button onclick="calcular()">Calcular Despesa</button>
+
+   <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+/* Faça sua lógica aqui! Não altere o HTML. */
+let contador= 0;
+function calcular() {
+   contador = contador + 1;
+   let metrosCubicos = Number(input_metros.value)
+   let tipoGas = input_sistema.value
+   let taxaInstalação = Number(input_taxa.value)
+   let valorBase= 0;
+   let mensagem=``
+   
+   if (tipoGas == 'GN'){
+      if (metrosCubicos <= 20){
+         valorBase = metrosCubicos * 6;
+      }else if (metrosCubicos > 20){
+         valorBase = metrosCubicos * 8;
+      }
+   }else if (tipoGas == 'GLP'){
+      if (metrosCubicos <= 20){
+         valorBase = metrosCubicos * 5;
+      }else if (metrosCubicos > 20){
+         valorBase = metrosCubicos * 7.5;
+      } 
+   }
+   TotalBruto = valorBase + taxaInstalação;
+   let proporcao = (100 * taxaInstalação)/TotalBruto 
+
+   mensagem = `Simulação ${contador}: 
+Sistema de ${tipoGas}  O valor final é R$ ${TotalBruto}. A taxa fixa de R$ ${taxaInstalação} representou ${proporcao.toFixed(2)}% do total bruto <br>.`
+
+div_mensagem.innerHTML += mensagem;
+}
+</script>
